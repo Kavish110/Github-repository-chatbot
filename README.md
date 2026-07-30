@@ -56,11 +56,7 @@ export GEMINI_API_KEY=your-gemini-key
 - Retrieval-based chat responses with file citations
 - Documentation generation and static-analysis-style suggestions
 
-## Example conversation
 
-Here is a sample of the chatbot experience in action:
-
-![Example conversation](docs/example-conversation.svg)
 
 ## Run locally
 
