@@ -1,8 +1,8 @@
-# GitHub Repository Chatbot
+#  Repository Chatbot
 
 ## About the chatbot
 
-This is a lightweight repository assistant that helps you explore an imported GitHub repository through natural-language questions. It indexes repository files, retrieves the most relevant code and documentation, and answers with file citations so you can quickly move from a question to the right source.
+This is a lightweight repository assistant that helps you explore an imported code repository through natural-language questions. It indexes repository files, retrieves the most relevant code and documentation, and answers with file citations so you can quickly move from a question to the right source.
 
 ## Problem statement
 
