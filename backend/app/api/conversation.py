@@ -39,7 +39,7 @@ def create_conversation(payload: ConversationCreateRequest) -> dict:
 
         history = repo.setdefault("conversation_history", [])
         history.append({"role": "user", "message": payload.message})
-        response = repository_service.chat(repo_id, payload.message)
+        response = repository_service.chat(repo_id, payload.message, conversation_history=history)
         if response:
             history.append({"role": "assistant", "message": response["answer"]})
         return {"repo_id": repo_id, "history": history}

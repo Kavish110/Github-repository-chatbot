@@ -9,7 +9,7 @@ client = TestClient(app)
 def test_repository_listing_and_conversation_workflow():
     import_response = client.post(
         "/repositories/import",
-        json={"repo_url": "https://github.com/example/demo-ui", "source_path": "./repositories"},
+        json={"source": "github", "value": "https://github.com/example/demo-ui", "source_path": "./repositories"},
     )
     assert import_response.status_code == 200
     repo_id = import_response.json()["repo_id"]

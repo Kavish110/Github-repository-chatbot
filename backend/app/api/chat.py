@@ -11,11 +11,29 @@ class ChatRequest(BaseModel):
     repo_id: str
     question: str
     conversation_id: str | None = None
+    api_key: str | None = None
+    llm_provider: str | None = None
 
 
 @router.post("")
 def chat(payload: ChatRequest) -> dict:
-    result = repository_service.chat(payload.repo_id, payload.question)
+    conversation_history = None
+    if payload.conversation_id:
+        conversation = conversation_service.get_conversation(payload.conversation_id)
+        if not conversation:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+        conversation_history = [
+            {"role": message["role"], "content": message["content"]}
+            for message in conversation_service.get_messages(payload.conversation_id)
+        ]
+
+    result = repository_service.chat(
+        payload.repo_id,
+        payload.question,
+        conversation_history=conversation_history,
+        api_key=payload.api_key,
+        llm_provider=payload.llm_provider,
+    )
     if not result:
         raise HTTPException(status_code=404, detail="Repository not found")
 
